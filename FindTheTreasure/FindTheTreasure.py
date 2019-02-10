@@ -2,7 +2,10 @@
 # treasure to win the game. The player must go through a series of rooms inside
 # an abandoned house to retrieve it. Player will be have to enter where he or she
 # navigates to find the treasure.
+# 
+# MS February 10, 2019 - Last Updated.
 
+# Dictionary that is referred depending on user's input during the game.
 locations = {0: "You're now outside of the mansion. Goodbye.",
              1: "You're now in the hallway of the mansion.",
              2: "You're now in the kitchen",
@@ -16,6 +19,7 @@ locations = {0: "You're now outside of the mansion. Goodbye.",
              10: "You're now in the 1st floor",
              11: "You found the treasure!",}
 
+# Dictionary that reperesents the available choices the player has depending on their input.
 exits = {0: {"Outside": 0},
          1: {"Outside": 0, "Kitchen": 2, "Bathroom": 3, "Living Room": 4, "2nd Floor": 5},
          2: {"Living Room": 4, "Hallway": 1},
@@ -29,6 +33,7 @@ exits = {0: {"Outside": 0},
          10: {"Hallway": 1},
          11: {"Treasure": 11}}
 
+# Dictionary used for player's input.
 vocabulary = {"Outside": "Outside",
               "Hallway": "Hallway",
               "Kitchen": "Kitchen",
@@ -43,8 +48,11 @@ vocabulary = {"Outside": "Outside",
               "Treasure": "Treasure",
               }
 
+# Initiate location of player at start of game.
 loc = 1
 
+# Initiate game and shows player where he or she currently is in the game. Allows user to input direction, updates
+# current location of the player, and shows player available choices/paths.
 while True:
     availableExits = ", ".join(exits[loc].keys())
     print(locations[loc])
@@ -53,10 +61,11 @@ while True:
 
     direction = input("Available exits are " + availableExits)
     print()
-    # Parse the user input, using our vocabulary dictionary if necessary
-    # Also, searches through user's input for key words for optimization
-    # if len(direction) > 1: # more than one letter, check vocabulary
+    
+    # Parse the user input, using our vocabulary dictionary if necessary.
+    # Also, searches through user's input for key words for optimization.
     words = direction.split()
+    
     # if word in user input
     for word in words:
         if word in vocabulary:
@@ -66,10 +75,3 @@ while True:
         loc = exits[loc][direction]
     else:
         print("You cannot go in that direction.")
-
-
-
-
-
-
-
